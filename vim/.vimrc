@@ -1,6 +1,7 @@
 set nocompatible              " required
 filetype off                  " required
 
+set incsearch
 set mouse=a
 
 filetype plugin indent on
@@ -43,8 +44,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'chrisbra/Colorizer'
 Plugin 'gmarik/Vundle.vim'
-Plugin 'jnurmine/Zenburn'
+" Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
+Plugin 'ntk148v/vim-horizon'
+
 call vundle#end()            " required
 
 "lightline configuratio
@@ -93,23 +96,13 @@ au BufNewFile,BufRead *.js, *.html, *.css
 "
 set encoding=utf-8
 
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-
-EOF
 let python_highlight_all=1
 syntax on
 if has('gui_running')
   set background=dark
   colorscheme solarized
 else
-  colorscheme zenburn
+  colorscheme horizon
 endif
 call togglebg#map("<F5>")
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
