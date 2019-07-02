@@ -193,6 +193,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="Telegram"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
@@ -213,7 +214,6 @@ for_window [class="Pamac-updater"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Qtconfig-qt4"] floating enable border normal
 for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [title="sudo"] floating enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
@@ -276,9 +276,6 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
-
 # Autostart applications
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id conky -c ~/.config/i3/conky_green
@@ -290,7 +287,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-bindsym Ctrl+Shift+l exec i3lock-fancy
+bindsym Ctrl+Shift+l exec ~/git/corrupter/lock.sh #i3lock-fancy-rapid 5 50
 bindsym Ctrl+Shift+g exec firefox
 bindsym Ctrl+Shift+s exec spotify
 
@@ -436,3 +433,8 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+bindsym $mod+z			gaps inner current plus 5
+bindsym $mod+Shift+z		gaps inner current minus 5
+bindsym $mod+Shift+x gaps inner current set 0; gaps outer current set 0

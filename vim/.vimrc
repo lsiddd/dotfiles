@@ -1,23 +1,20 @@
+" ---------- general options ----
 set nocompatible              " required
 filetype off                  " required
-
 set incsearch
 set mouse=a
-
 filetype plugin indent on
-" show existing tab with 4 spaces width
 set tabstop=4
-" when indenting with '>', use 4 spaces width
 set shiftwidth=4
-" On pressing tab, insert 4 spaces
 set expandtab
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" set relative line numbers
 set number relativenumber
+set ignorecase
+set smartcase
+set backspace=indent,eol,start
+set confirm
+set visualbell
+set t_vb=
+set encoding=utf-8
 
 augroup numbertoggle
   autocmd!
@@ -25,8 +22,10 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+
+" ----------- vundle -------------
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'altercation/vim-colors-solarized'
@@ -41,17 +40,16 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdtree'
+Plugin 'ntk148v/vim-horizon'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'chrisbra/Colorizer'
 Plugin 'gmarik/Vundle.vim'
-" Plugin 'jnurmine/Zenburn'
 Plugin 'kien/ctrlp.vim'
-Plugin 'ntk148v/vim-horizon'
 
 call vundle#end()            " required
 
-"lightline configuratio
+" -------lightline configuration --------
 set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -68,7 +66,7 @@ filetype plugin indent on    " required
 set splitbelow
 set splitright
 
-"split navigations
+" ----------- split navigations -----
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -77,7 +75,6 @@ nnoremap <C-H> <C-W><C-H>
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
-
 " Enable folding with the spacebar
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
@@ -95,7 +92,6 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set shiftwidth=2
 "au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 "
-set encoding=utf-8
 
 let python_highlight_all=1
 syntax on
@@ -111,43 +107,18 @@ set nu
 ", {'rtp': 'powerline/bindings/vim/'}
 "set clipboard=unnamed
 
-"Python run script
+" --------- mappings -----------
 nnoremap <F6> :w <ENTER>:!python %:p <ENTER>
-"easier file saving
 map <Esc><Esc> :w <CR>
-
-
-"savins sessions and reloading them
-function! MakeSession()
-  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
-  if (filewritable(b:sessiondir) != 2)
-    exe 'silent !mkdir -p ' b:sessiondir
-    redraw!
-  endif
-  let b:filename = b:sessiondir . '/session.vim'
-  exe "mksession! " . b:filename
-endfunction
-
-function! LoadSession()
-  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
-  let b:sessionfile = b:sessiondir . "/session.vim"
-  if (filereadable(b:sessionfile))
-    exe 'source ' b:sessionfile
-  else
-    echo "No session loaded."
-  endif
-endfunction
-au VimEnter * nested :call LoadSession()
-au VimLeave * :call MakeSession()
-
-
 map <F2> :NERDTree <cr>
 
-"restore buffer of previous session
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+" ------------ view reload -----
+if (@% != "")
+    au BufWinLeave * mkview
+    au BufWinEnter * silent loadview
+endif
 
-
+" ------- typos --------
 cab W  w
 cab qw wq
 cab Wq wq
@@ -157,4 +128,5 @@ cab Q  q
 cab Qa qa
 cab QA qa
 
+" -------- just because --------
 nmap ; :

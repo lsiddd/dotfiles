@@ -24,4 +24,4 @@ In fedora like systems, just executing the install script should be enough.
 
 ## Screenshot(s)
 
-![Screenshot](Screenshot_20181204_144842.png)
+![Screenshot](screenshot.png)
