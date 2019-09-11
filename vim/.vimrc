@@ -1,20 +1,23 @@
-" ---------- general options ----
 set nocompatible              " required
 filetype off                  " required
+
 set incsearch
 set mouse=a
+
 filetype plugin indent on
+" show existing tab with 4 spaces width
 set tabstop=4
+" when indenting with '>', use 4 spaces width
 set shiftwidth=4
+" On pressing tab, insert 4 spaces
 set expandtab
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" set relative line numbers
 set number relativenumber
-set ignorecase
-set smartcase
-set backspace=indent,eol,start
-set confirm
-set visualbell
-set t_vb=
-set encoding=utf-8
 
 augroup numbertoggle
   autocmd!
@@ -22,13 +25,12 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-
-" ----------- vundle -------------
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'irrationalistic/vim-tasks'
@@ -39,8 +41,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'scrooloose/nerdtree'
 Plugin 'ntk148v/vim-horizon'
+Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'chrisbra/Colorizer'
@@ -49,7 +51,7 @@ Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            " required
 
-" -------lightline configuration --------
+"lightline configuratio
 set laststatus=2
 let g:lightline = {
       \ 'colorscheme': 'wombat',
@@ -66,7 +68,7 @@ filetype plugin indent on    " required
 set splitbelow
 set splitright
 
-" ----------- split navigations -----
+"split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -75,6 +77,7 @@ nnoremap <C-H> <C-W><C-H>
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
+
 " Enable folding with the spacebar
 nnoremap <space> za
 let g:SimpylFold_docstring_preview=1
@@ -92,6 +95,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set shiftwidth=2
 "au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 "
+set encoding=utf-8
 
 let python_highlight_all=1
 syntax on
@@ -99,26 +103,17 @@ if has('gui_running')
   set background=dark
   colorscheme solarized
 else
-  colorscheme horizon
+  colorscheme molokai
 endif
 call togglebg#map("<F5>")
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 set nu
 ", {'rtp': 'powerline/bindings/vim/'}
-"set clipboard=unnamed
+set clipboard=unnamed
 
-" --------- mappings -----------
+"Python run script
 nnoremap <F6> :w <ENTER>:!python %:p <ENTER>
-map <Esc><Esc> :w <CR>
-map <F2> :NERDTree <cr>
-
-" ------------ view reload -----
-if (@% != "")
-    au BufWinLeave * mkview
-    au BufWinEnter * silent loadview
-endif
-
-" ------- typos --------
+map <Esc><Esc> :w<CR>
 cab W  w
 cab qw wq
 cab Wq wq
@@ -128,5 +123,12 @@ cab Q  q
 cab Qa qa
 cab QA qa
 
-" -------- just because --------
 nmap ; :
+
+map <F2> :NERDTree <cr>
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+
+"autostart NERDTree
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd p
