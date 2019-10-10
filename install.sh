@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# @email lucassidpacheco@gmail.com
 function install_fedora {
   deps_fedora
 
