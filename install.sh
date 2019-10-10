@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# @author Lucas Pacheco lsiddd
 
 function install_fedora {
   deps_fedora
@@ -22,27 +23,27 @@ function install_fedora {
 function deps_fedora {
   echo "installing standard dependencies"
   sudo dnf install -y git conky rofi zsh dmenu network-manager-applet
-  
+
   echo 'Installing i3-gaps dependencies'
   sudo dnf install -y libxcb-devel xcb-util-keysyms-devel xcb-util-devel \
     xcb-util-wm-devel xcb-util-xrm-devel yajl-devel libXrandr-devel \
     startup-notification-devel libev-devel xcb-util-cursor-devel \
     libXinerama-devel libxkbcommon-devel libxkbcommon-x11-devel \
     pcre-devel pango-devel git gcc automake i3status i3lock
-  
+
   cd ~
 
-  
+
   git clone https://www.github.com/Airblader/i3 i3-gaps && cd i3-gaps
-  
-  
+
+
   autoreconf --force --install
   rm -rf build/
   mkdir -p build && cd build/
   ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
   make
   sudo make install
-  
+
   echo 'installing i3blocks'
   sudo dnf -y copr enable wyvie/i3blocks
   sudo dnf -y install i3blocks
@@ -60,13 +61,13 @@ function deps_fedora {
   git clone https://github.com/meskarune/i3lock-fancy.git
   cd i3lock-fancy
   sudo make install
-  
+
   echo 'Installing compton'
   dnf copr enable dschubert/compton
   dnf install compton
 }
 
-if [[ $(cat /etc/os-release | head -n 1) == 'NAME=Fedora' ]]; 
+if [[ $(cat /etc/os-release | head -n 1) == 'NAME=Fedora' ]];
 then
   install_fedora
 fi
