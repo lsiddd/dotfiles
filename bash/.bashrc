@@ -644,3 +644,5 @@ _isroot=false
     fi
   #}}}
 #}}}
+
+alias python="python3"

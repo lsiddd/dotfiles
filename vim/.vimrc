@@ -103,7 +103,7 @@ if has('gui_running')
   set background=dark
   colorscheme solarized
 else
-  colorscheme molokai
+  colorscheme horizon
 endif
 call togglebg#map("<F5>")
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -112,7 +112,7 @@ set nu
 set clipboard=unnamed
 
 "Python run script
-nnoremap <F6> :w <ENTER>:!python %:p <ENTER>
+nnoremap <F6> :w <ENTER>:!python3 %:p <ENTER>
 map <Esc><Esc> :w<CR>
 cab W  w
 cab qw wq
