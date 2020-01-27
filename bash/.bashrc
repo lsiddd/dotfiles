@@ -1,3 +1,6 @@
+# Archlinux Ultimate Install - .bashrc
+# by helmuthdu
+# OVERALL CONDITIONALS {{{
 _islinux=false
 [[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && _islinux=true
 
@@ -67,7 +70,7 @@ _isroot=false
   fi
   # RUBY {{{
     if which ruby &>/dev/null; then
-      GEM_DIR=$(ruby -rubygems -e 'puts Gem.user_dir')/bin
+      GEM_DIR=$(ruby -r rubygems -e 'puts Gem.user_dir')/bin
       if [[ -d "$GEM_DIR" ]]; then
         export PATH=$GEM_DIR:$PATH
       fi
@@ -645,4 +648,12 @@ _isroot=false
   #}}}
 #}}}
 
-alias python="python3"
+alias update="sudo apt update"
+alias upgrade="sudo apt upgrade"
+alias install="sudo apt install"
+alias ls="ls --group-directories-first --color=auto"
+ls
+function cd {
+    builtin cd "$@" && ls -F
+    }
+

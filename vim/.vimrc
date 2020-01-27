@@ -115,10 +115,10 @@ set clipboard=unnamed
 nnoremap <F6> :w <ENTER>:!python3 %:p <ENTER>
 map <Esc><Esc> :w<CR>
 cab W  w
-cab qw wq
-cab Wq wq
-cab wQ wq
-cab WQ wq
+cab qw wqa
+cab Wq wqa
+cab wQ wqa
+cab WQ wqa
 cab Q  q
 cab Qa qa
 cab QA qa
