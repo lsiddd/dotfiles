@@ -19,6 +19,9 @@ call vundle#begin()
 " set relative line numbers
 set number relativenumber
 
+" set persistent undo
+set undodir=~/.vim/undodir
+
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -34,6 +37,7 @@ Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'irrationalistic/vim-tasks'
+Plugin 'mhartington/oceanic-next'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
@@ -103,7 +107,7 @@ if has('gui_running')
   set background=dark
   colorscheme solarized
 else
-  colorscheme horizon
+  colorscheme OceanicNext
 endif
 call togglebg#map("<F5>")
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
@@ -115,10 +119,10 @@ set clipboard=unnamed
 nnoremap <F6> :w <ENTER>:!python3 %:p <ENTER>
 map <Esc><Esc> :w<CR>
 cab W  w
-cab qw wqa
-cab Wq wqa
-cab wQ wqa
-cab WQ wqa
+cab qw wq
+cab Wq wq
+cab wQ wq
+cab WQ wq
 cab Q  q
 cab Qa qa
 cab QA qa
