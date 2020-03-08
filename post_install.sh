@@ -34,8 +34,17 @@ gstreamer-ffmpeg -y
 
 dnf install menulibre -y
 
+dnf install vim gcc gcc-c++ python-pip mpv -y
+
 dnf install copyq -y
 dnf install gnome-tweak-tool -y
+
+# docker
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager \
+    --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io
 
 rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x8320CA65CB2DE8E5"
 bash -c 'cat > /etc/yum.repos.d/onlyoffice.repo << 'EOF'
