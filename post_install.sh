@@ -53,6 +53,8 @@ dnf install flatpak -y
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub com.spotify.Client
 flatpak install -y flathub org.telegram.desktop
+flatpak install flathub com.skype.Client
+flatpak install flathub com.visualstudio.code.oss
 
 dnf install gnome-shell-extension-dash-to-dock.noarch -y
 dnf install gnome-shell-theme-flat-remix.noarch -y
