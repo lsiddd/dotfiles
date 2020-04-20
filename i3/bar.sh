@@ -7,4 +7,4 @@
     if [ "$spotify_status" = "Playing" ] ; then
         echo -n "$spotify_artist - $spotify_song"
     fi
-    echo -n $line || exit 1
+    echo $line || exit 1

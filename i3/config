@@ -287,9 +287,24 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-bindsym Ctrl+Shift+l exec ~/git/corrupter/lock.sh #i3lock-fancy-rapid 5 50
+bindsym Ctrl+Shift+l exec /home/sid/git/corrupter/corrup.sh
 bindsym Ctrl+Shift+g exec firefox
 bindsym Ctrl+Shift+s exec spotify
+
+#bindsym 122 exec amixer set Master 5%-
+#bindsym 123 exec amixer set Master 5%+
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 exec setxkbmap -model abnt2 -layout br
 exec compton -cCGfF -b -i 0.75 --vsync opengl
@@ -335,34 +350,36 @@ set_from_resource $term_color13    color13
 set_from_resource $term_color14    color14
 set_from_resource $term_color15    color15
 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
-bar {
-	i3bar_command i3bar
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	position top
+#bar {
+	#i3bar_command i3bar
+	#status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	#position top
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
+### please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+##	tray_output primary
+##	tray_output eDP1
 
-	bindsym button4 nop
-	bindsym button5 nop
-#   font xft:URWGothic-Book 11
-	strip_workspace_numbers yes
+	#bindsym button4 nop
+	#bindsym button5 nop
+##   font xft:URWGothic-Book 11
+	#strip_workspace_numbers yes
 
-    colors {
-        background #283339
-        statusline #F9FAF9
-        separator  #454947
+    #colors {
+        #background #283339
+        #statusline #F9FAF9
+        #separator  #454947
 
-#                      border  backgr. text
-        focused_workspace  #F9FAF9 #16a085 #292F34
-        active_workspace   #595B5B #353836 #FDF6E3
-        inactive_workspace #595B5B #283339 #EEE8D5
-        binding_mode       #16a085 #2C2C2C #F9FAF9
-        urgent_workspace   #16a085 #FDF6E3 #E5201D
-    }
-}
+##                      border  backgr. text
+        #focused_workspace  #F9FAF9 #16a085 #292F34
+        #active_workspace   #595B5B #353836 #FDF6E3
+        #inactive_workspace #595B5B #283339 #EEE8D5
+        #binding_mode       #16a085 #2C2C2C #F9FAF9
+        #urgent_workspace   #16a085 #FDF6E3 #E5201D
+    #}
+#}
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle

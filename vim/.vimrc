@@ -3,6 +3,8 @@ filetype off                  " required
 
 set incsearch
 set mouse=a
+set linebreak
+set spelllang=en
 
 filetype plugin indent on
 " show existing tab with 4 spaces width
@@ -117,6 +119,7 @@ set clipboard=unnamed
 
 "Python run script
 nnoremap <F6> :w <ENTER>:!python3 %:p <ENTER>
+nnoremap <F7> :w <ENTER>:!./build.sh& <ENTER>
 map <Esc><Esc> :w<CR>
 cab W  w
 cab qw wq
@@ -136,3 +139,4 @@ au BufWinEnter * silent loadview
 "autostart NERDTree
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
+autocmd BufWinEnter * NERDTree
