@@ -38,7 +38,8 @@ bindsym $mod+Return exec alacritty
 
 # start rofi (a program launcher)
 bindsym F9 exec --no-startup-id "rofi -combi-modi drun,run -show combi"
-bindsym $mod+d exec --no-startup-id "rofi -combi-modi drun,run -show combi"
+# bindsym $mod+d exec --no-startup-id "rofi -combi-modi drun,run -show combi"
+bindsym $mod+d exec --no-startup-id /home/lucas/.config/polybar/scripts/menu_full
 bindsym F10 exec --no-startup-id rofi -show window
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 
@@ -289,9 +290,12 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-bindsym Ctrl+Shift+l exec /home/sid/git/corrupter/corrup.sh
-bindsym Ctrl+Shift+g exec firefox
-bindsym Ctrl+Shift+s exec spotify
+# xautolock
+exec --no-startup-id autolock -time 5 -locker fuzzy_lock -notify 20 -notifier 'xset dpms force off' &
+exec --no-startup-id autolock -time 7 -locker "systemctl suspend" &
+exec --no-startup-id xss-lock -- ~/.config/i3/corrupter/exec.sh
+
+bindsym Ctrl+Shift+l exec ~/.config/i3/corrupter/exec.sh
 
 #bindsym 122 exec amixer set Master 5%-
 #bindsym 123 exec amixer set Master 5%+
