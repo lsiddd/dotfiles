@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# @email lucassidpacheco@gmail.com
+
 # @author Lucas Pacheco lsiddd
 
 function install_fedora {
