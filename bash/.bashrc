@@ -107,10 +107,10 @@ alias hlp='less ~/.bashrc_help'
 alias da='date "+%Y-%m-%d %A %T %Z"'
 
 # Alias's to modified commands
-alias cp='cp'
-alias mv='mv'
+alias cp='cp -v'
+alias mv='mv -v'
 alias rm='rm -v'
-alias mkdir='mkdir -p'
+alias mkdir='mkdir -pv'
 alias ps='ps auxf'
 alias ping='ping -c 10'
 alias less='less -R'
