@@ -53,16 +53,25 @@ dnf install onlyoffice-desktopeditors -y
 
 dnf install unzip p7zip -y
 
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim -y
+sudo dnf install cmake gcc-c++ make python3-devel -y
+sudo dnf install npm golang -y
+sudo dnf install clang-tools-extra -y
+sudo dnf install boost-devel -y
+
+
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+sudo dnf install dnf-plugins-core
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+sudo dnf check-update
+sudo dnf install code brave-browser
+
+
 dnf install flatpak -y
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub com.spotify.Client
 flatpak install -y flathub org.telegram.desktop
 flatpak install -y flathub com.skype.Client
-flatpak install -y flathub com.visualstudio.code.oss
 flatpak install -y flathub com.elsevier.MendeleyDesktop
-
-dnf install gnome-shell-extension-dash-to-dock.noarch -y
-dnf install gnome-shell-theme-flat-remix.noarch -y
-dnf install numix-icon-theme.noarch -y
-dnf install numix-gtk-theme.noarch -y
-
