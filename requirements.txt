@@ -75,7 +75,7 @@ launchpadlib==1.10.6
 lazr.restfulclient==0.13.5
 lazr.uri==1.0.3
 lazy-object-proxy==1.4.3
-lxml==4.6.3
+lxml==4.6.5
 Mako==1.0.7
 Markdown==3.2.1
 MarkupSafe==1.0
