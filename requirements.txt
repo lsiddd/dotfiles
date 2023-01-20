@@ -81,7 +81,7 @@ Markdown==3.2.1
 MarkupSafe==1.0
 matplotlib==3.2.1
 mccabe==0.6.1
-mechanize==0.4.5
+mechanize==0.4.6
 mistune==0.8.4
 msgpack==0.6.2
 nbconvert==5.6.1
